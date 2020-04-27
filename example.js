@@ -1,7 +1,7 @@
 
 var session = require('./');
 var koa = require('koa');
-var app = koa();
+var app = new koa();
 
 app.keys = ['some secret hurr'];
 

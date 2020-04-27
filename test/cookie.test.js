@@ -12,7 +12,7 @@ describe('Koa Session Cookie', () => {
   describe('when options.signed = true', () => {
     describe('when app.keys are set', () => {
       it('should work', done => {
-        const app = koa();
+        const app = new koa();
 
         app.keys = [ 'a', 'b' ];
         app.use(session({}, app));
@@ -30,7 +30,7 @@ describe('Koa Session Cookie', () => {
 
     describe('when app.keys are not set', () => {
       it('should throw and clean this cookie', done => {
-        const app = koa();
+        const app = new koa();
 
         app.use(session(app));
 
@@ -47,7 +47,7 @@ describe('Koa Session Cookie', () => {
 
     describe('when app not set', () => {
       it('should throw', () => {
-        const app = koa();
+        const app = new koa();
         (function() {
           app.use(session());
         }).should.throw('app instance required: `session(opts, app)`');
@@ -58,7 +58,7 @@ describe('Koa Session Cookie', () => {
   describe('when options.signed = false', () => {
     describe('when app.keys are not set', () => {
       it('should work', done => {
-        const app = koa();
+        const app = new koa();
 
         app.use(session({ signed: false }, app));
 
@@ -469,7 +469,7 @@ describe('Koa Session Cookie', () => {
 
   describe('when an error is thrown downstream and caught upstream', () => {
     it('should still save the session', done => {
-      const app = koa();
+      const app = new koa();
 
       app.keys = [ 'a', 'b' ];
 
@@ -626,7 +626,7 @@ describe('Koa Session Cookie', () => {
 
   describe('when get session before enter session middleware', () => {
     it('should work', done => {
-      const app = koa();
+      const app = new koa();
 
       app.keys = [ 'a', 'b' ];
       app.use(function* (next) {
@@ -655,7 +655,7 @@ describe('Koa Session Cookie', () => {
 
   describe('when valid and beforeSave set', () => {
     it('should ignore session when uid changed', done => {
-      const app = koa();
+      const app = new koa();
 
       app.keys = [ 'a', 'b' ];
       app.use(session({
@@ -723,7 +723,7 @@ describe('Koa Session Cookie', () => {
           return JSON.parse(data).enveloped;
         }
 
-        const app = koa();
+        const app = new koa();
         app.keys = [ 'a', 'b' ];
         app.use(session({
           encode,
@@ -811,7 +811,7 @@ describe('Koa Session Cookie', () => {
 });
 
 function App(options) {
-  const app = koa();
+  const app = new koa();
   app.keys = [ 'a', 'b' ];
   app.use(session(options, app));
   return app;

@@ -327,7 +327,7 @@ describe('Koa Session External Store', () => {
 
   describe('when an error is thrown downstream and caught upstream', () => {
     it('should still save the session', done => {
-      const app = koa();
+      const app = new koa();
 
       app.keys = [ 'a', 'b' ];
 
@@ -569,7 +569,7 @@ describe('Koa Session External Store', () => {
   describe('when valid and beforeSave set', () => {
     it('should ignore session when uid changed', done => {
       done = pedding(done, 2);
-      const app = koa();
+      const app = new koa();
 
       app.keys = [ 'a', 'b' ];
       app.use(session({
@@ -773,7 +773,7 @@ describe('Koa Session External Store', () => {
 });
 
 function App(options) {
-  const app = koa();
+  const app = new koa();
   app.keys = [ 'a', 'b' ];
   options = options || {};
   options.store = store;

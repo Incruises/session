@@ -43,7 +43,7 @@ $ npm install koa-session
 ```js
 var session = require('koa-session');
 var koa = require('koa');
-var app = koa();
+var app = new koa();
 
 app.keys = ['some secret hurr'];
 
